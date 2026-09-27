@@ -1,0 +1,17 @@
+services:
+  app:
+    build: .
+    environment:
+      KS_WALLET_ENCRYPTION_KEY: ${KS_WALLET_ENCRYPTION_KEY}
+      KS_SOLANA_RPC: ${KS_SOLANA_RPC:-}
+      KS_DB_PATH: /app/data/app.db
+      SMTP_HOST: ${SMTP_HOST}
+      SMTP_PORT: ${SMTP_PORT:-587}
+      SMTP_USER: ${SMTP_USER}
+      SMTP_PASS: ${SMTP_PASS}
+      SMTP_FROM: ${SMTP_FROM}
+    volumes:
+      - ./data:/app/data
+    ports:
+      - "0.0.0.0:3400:3000"
+    restart: unless-stopped
